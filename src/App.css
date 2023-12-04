@@ -1,43 +1,207 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
 .App {
+  max-width: 800px;
+  margin: 27px auto;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
   text-align: center;
   padding: 20px;
 }
 
-.user-info img {
-  border-radius: 60px;
-  
-}
-
-.dark-mode {
-  background-color: #333;
-  color: #fff;
-}
-
 header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+h1 {
+  margin: auto;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  border-radius: 60px;
+}
+
+.user-info img {
+  position: absolute;
+  top: 50px;
+  left: 20rem;
+}
+
+.user-info p {
+  position: absolute;
+  top: 105px;
+  left: 18.5rem;
+  margin-top: 12px;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+button {
+  background-color: #fff;
+  color: #007bff;
+  border: 1px solid #007bff;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
 .task-form {
-  margin-top: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+input {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 li {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #ccc;
-  margin: 5px 0;
-  padding: 10px;
+}
+
+.login-button {
+  position: absolute;
+  bottom: 34.4rem;
+  left: 60rem;
+}
+
+.logout-button{
+  position: absolute;
+  top: 75.5px;
+  right: 330px;
 }
 
 .completed {
+  background-color: #d4edda;
   text-decoration: line-through;
-  opacity: 0.7;
+  opacity: 0.75;
+}
+
+.task-indicator {
+  font-weight: bold;
+}
+
+.due-date {
+  color: #777;
+}
+
+.overdue {
+  color: #dc3545;
+}
+
+@media (max-width: 500px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .user-info p {
+    position: absolute;
+    top: 105px;
+    left: 3rem;
+    margin-top: 25px;
+  }
+
+  .user-info img {
+    position: absolute;
+    top: 40px;
+    left: 4.5rem;
+    margin-top: 20.5px;
+  }
+  
+  .profile-pic {
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .user-info {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .logout-button{
+    position: absolute;
+    top: 46px;
+    right: 20px;
+  }
+
+  .profile-pic {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .login-button {
+    position: absolute;
+    bottom: 87%;
+    left: 70%;
+  }
+}
+
+.dark-mode {
+  background-color: #333; /* Change this to your preferred dark mode background color */
+  color: #fff; /* Change this to your preferred dark mode text color */
+}
+
+.dark-mode header {
+  background-color: #444; /* Change this to your preferred dark mode header background color */
+}
+
+.dark-mode button {
+  background-color: #333; /* Change this to your preferred dark mode button background color */
+  color: #fff; /* Change this to your preferred dark mode button text color */
+  border: 1px solid #fff; /* Change this to your preferred dark mode button border color */
+}
+
+.dark-mode button:hover {
+  background-color: #555; /* Change this to your preferred dark mode button hover background color */
+}
+
+.dark-mode .completed {
+  background-color: #555; /* Change this to your preferred dark mode completed task background color */
+}
+
+.dark-mode .due-date {
+  color: #bbb; /* Change this to your preferred dark mode due date text color */
+}
+
+.dark-mode .overdue {
+  color: #dc3545; /* Change this to your preferred dark mode overdue text color */
 }

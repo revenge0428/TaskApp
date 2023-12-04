@@ -3,6 +3,10 @@ import { signInWithPopup, signOut } from 'firebase/auth';
 
 import './App.css';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
@@ -27,6 +31,8 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 const provider = new GoogleAuthProvider(db);
+
+library.add(faMoon, faSun);
 
 
 function App() {
@@ -197,21 +203,34 @@ function App() {
   return (
     <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
       <header>
-        <h1>Task Manager</h1>
+        <h1>Tasky</h1>
         {user ? (
           <div className="user-info">
             {user.profilePic && (
-              <img src={user.profilePic} alt="Profile" className="profile-pic" width="100" height="100" />
+              <img
+                src={user.profilePic}
+                alt="Profile"
+                className="profile-pic"
+                width="70"
+                height="70"
+              />
             )}
-            <p>Welcome, {user.username}!</p>
-            <button onClick={handleLogout}>Logout</button>
+            <p>{user.username}</p>
+            <div className='logout-button'>
+            <button id="logOut" onClick={handleLogout} style={{ marginLeft: '35px' }}>Logout</button>
+            </div>
           </div>
         ) : (
-          <button onClick={handleLogin}>Login</button>
+          <div className='login-button'>
+            <button onClick={handleLogin}>Login</button>
+          </div>
         )}
         <label>
-          Dark Mode
-          <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
+          <FontAwesomeIcon
+            icon={darkMode ? ['fas', 'moon'] : ['fas', 'sun']}
+            onClick={toggleDarkMode}
+            style={{ cursor: 'pointer' }}
+          />
         </label>
       </header>
       {user && (
