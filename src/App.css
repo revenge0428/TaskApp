@@ -176,16 +176,16 @@ li {
 }
 
 .dark-mode {
-  background-color: #333; /* Change this to your preferred dark mode background color */
+  background-color: #000000; /* Change this to your preferred dark mode background color */
   color: #fff; /* Change this to your preferred dark mode text color */
 }
 
 .dark-mode header {
-  background-color: #444; /* Change this to your preferred dark mode header background color */
+  background-color: #131111; /* Change this to your preferred dark mode header background color */
 }
 
 .dark-mode button {
-  background-color: #333; /* Change this to your preferred dark mode button background color */
+  background-color: #030101; /* Change this to your preferred dark mode button background color */
   color: #fff; /* Change this to your preferred dark mode button text color */
   border: 1px solid #fff; /* Change this to your preferred dark mode button border color */
 }

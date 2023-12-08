@@ -125,28 +125,37 @@ function App() {
     try {
       await signOut(auth);
       setUser(null);
-      setTasks([]);
+      // Clear user-specific data from local storage
+      localStorage.removeItem('tasks');
       setSelectedTask(null);
     } catch (error) {
       console.error('Error signing out:', error.message);
     }
   };
+  
 
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
   };
 
   const addTask = () => {
-    if (newTask.trim() !== '' && dueDate.trim() !== '') {
-      const newTasks = [
-        ...tasks,
-        { id: Date.now(), text: newTask, completed: false, dueDate: new Date(dueDate) },
-      ];
-      setTasks(newTasks);
-      setNewTask('');
-      setDueDate('');
-    }
-  };
+  if (newTask.trim() !== '' && dueDate.trim() !== '') {
+    const newTasks = [
+      ...tasks,
+      {
+        id: Date.now(),
+        userId: user.uid, // Include the user ID
+        text: newTask,
+        completed: false,
+        dueDate: new Date(dueDate),
+      },
+    ];
+    setTasks(newTasks);
+    setNewTask('');
+    setDueDate('');
+  }
+};
+
 
   const editTask = () => {
     if (selectedTask && (newTask.trim() !== '' || dueDate.trim() !== '')) {
@@ -255,7 +264,8 @@ function App() {
         </div>
       )}
       <ul>
-        {tasks.map((task) => (
+       {user &&
+        tasks.map((task) => (
           <li
             key={task.id}
             className={task.completed || checkDueDate(task.dueDate) ? 'completed' : ''}
