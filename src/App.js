@@ -214,6 +214,7 @@ function App() {
       <header>
         <h1>Tasky</h1>
         {user ? (
+          // Display user information when logged in
           <div className="user-info">
             {user.profilePic && (
               <img
@@ -226,14 +227,28 @@ function App() {
             )}
             <p>{user.username}</p>
             <div className='logout-button'>
-            <button id="logOut" onClick={handleLogout} style={{ marginLeft: '35px' }}>Logout</button>
+              <button id="logOut" onClick={handleLogout} style={{ marginLeft: '35px' }}>Logout</button>
             </div>
           </div>
         ) : (
+          // Display login button when not logged in
+          <div className='login-button'>
             <Login handleLogin={handleLogin} />
+          </div>
         )}
-        <DarkMode darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+         <DarkMode darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       </header>
+      {!user && (
+        <div className='app-introduction-container'>
+          <div className='app-introduction'>
+            <h2>Welcome to Tasky!</h2>
+            <p>
+              Tasky is a simple and efficient task management app designed to help you stay organized and productive. 
+              Log in to start managing your tasks and enhance your daily productivity.
+            </p>
+          </div>
+        </div>
+      )}
       {user && (
         <div className="task-form">
           <input

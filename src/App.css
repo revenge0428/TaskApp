@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f5f5f5;
+  overflow: hidden;
 }
 
 .App {
@@ -97,9 +98,9 @@ li {
 }
 
 .login-button {
-  position: absolute;
-  bottom: 34.4rem;
-  left: 60rem;
+  position: fixed;
+  top: 75px;
+  left: 70%;
 }
 
 .logout-button{
@@ -173,7 +174,7 @@ li {
   }
 
   .login-button {
-    position: absolute;
+    position: fixed;
     bottom: 87%;
     left: 70%;
   }
@@ -212,4 +213,20 @@ li {
 
 .dark-mode .overdue {
   color: #dc3545; 
+}
+
+.about {
+  max-width: 600px; /* Set a maximum width for better readability on larger screens */
+  margin: 0 auto; /* Center the element horizontally */
+  text-align: center; /* Center the text within the element */
+  padding: 20px; /* Add some padding for better visual appearance */
+  border-radius: 10px; /* Add rounded corners for a better visual appearance */
+  box-shadow: 0 0 10px rgba(7, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+}
+
+/* For mobile responsiveness */
+@media (max-width: 600px) {
+  .about {
+    width: 90%; /* Adjust the width for smaller screens */
+  }
 }
