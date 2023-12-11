@@ -5,8 +5,8 @@ import './App.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import DarkMode from './DarkMode';
+import Login from './Login';
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
@@ -230,17 +230,9 @@ function App() {
             </div>
           </div>
         ) : (
-          <div className='login-button'>
-            <button onClick={handleLogin}>Login</button>
-          </div>
+            <Login handleLogin={handleLogin} />
         )}
-        <label>
-          <FontAwesomeIcon
-            icon={darkMode ? ['fas', 'moon'] : ['fas', 'sun']}
-            onClick={toggleDarkMode}
-            style={{ cursor: 'pointer' }}
-          />
-        </label>
+        <DarkMode darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       </header>
       {user && (
         <div className="task-form">
