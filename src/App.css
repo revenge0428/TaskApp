@@ -185,32 +185,31 @@ li {
 }
 
 .dark-mode {
-  background-color: #000000; /* Change this to your preferred dark mode background color */
-  color: #fff; /* Change this to your preferred dark mode text color */
+  background-color: #000000; 
+  color: #fff; 
 }
 
 .dark-mode header {
-  background-color: #131111; /* Change this to your preferred dark mode header background color */
+  background-color: #131111; 
 }
 
 .dark-mode button {
-  background-color: #030101; /* Change this to your preferred dark mode button background color */
-  color: #fff; /* Change this to your preferred dark mode button text color */
-  border: 1px solid #fff; /* Change this to your preferred dark mode button border color */
+  background-color: #030101; 
+  border: 1px solid #fff; 
 }
 
 .dark-mode button:hover {
-  background-color: #555; /* Change this to your preferred dark mode button hover background color */
+  background-color: #555; 
 }
 
 .dark-mode .completed {
-  background-color: #555; /* Change this to your preferred dark mode completed task background color */
+  background-color: #555; 
 }
 
 .dark-mode .due-date {
-  color: #bbb; /* Change this to your preferred dark mode due date text color */
+  color: #bbb; 
 }
 
 .dark-mode .overdue {
-  color: #dc3545; /* Change this to your preferred dark mode overdue text color */
+  color: #dc3545; 
 }
