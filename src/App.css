@@ -9,7 +9,19 @@ body {
 .App {
   max-width: 800px;
   margin: 27px auto;
-  background-color: #fff;
+   background: linear-gradient(
+    45deg,
+    hsl(0deg 0% 100%) 0%,
+    hsl(344deg 0% 96%) 11%,
+    hsl(344deg 0% 92%) 22%,
+    hsl(0deg 0% 88%) 33%,
+    hsl(1deg 31% 86%) 44%,
+    hsl(1deg 53% 85%) 56%,
+    hsl(0deg 68% 83%) 67%,
+    hsl(20deg 91% 84%) 78%,
+    hsl(39deg 87% 85%) 89%,
+    hsl(73deg 83% 88%) 100%
+  );;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
@@ -18,8 +30,20 @@ body {
 }
 
 header {
-  background-color: #007bff;
-  color: #fff;
+  background: linear-gradient(
+    45deg,
+    hsl(0deg 0% 100%) 0%,
+    hsl(344deg 0% 96%) 11%,
+    hsl(344deg 0% 92%) 22%,
+    hsl(0deg 0% 88%) 33%,
+    hsl(1deg 31% 86%) 44%,
+    hsl(1deg 53% 85%) 56%,
+    hsl(0deg 68% 83%) 67%,
+    hsl(20deg 91% 84%) 78%,
+    hsl(39deg 87% 85%) 89%,
+    hsl(73deg 83% 88%) 100%
+  );;
+  
   padding: 25px;
   display: flex;
   justify-content: space-between;
@@ -55,9 +79,8 @@ h1 {
 }
 
 button {
-  background-color: #fff;
-  color: #007bff;
-  border: 1px solid #007bff;
+  background-image: #d4bfbf;
+  color: #343b42;
   padding: 8px 16px;
   cursor: pointer;
   font-size: 14px;
@@ -65,7 +88,7 @@ button {
 }
 
 button:hover {
-  background-color: #007bff;
+  background-color: #747679;
   color: #fff;
 }
 
@@ -186,12 +209,12 @@ li {
 }
 
 .dark-mode {
-  background-color: #000000; 
-  color: #fff; 
+  background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%); 
+  
 }
 
 .dark-mode header {
-  background-color: #131111; 
+  background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%); 
 }
 
 .dark-mode button {

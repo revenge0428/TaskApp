@@ -231,7 +231,6 @@ function App() {
             </div>
           </div>
         ) : (
-          // Display login button when not logged in
           <div className='login-button'>
             <Login handleLogin={handleLogin} />
           </div>
