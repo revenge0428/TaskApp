@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { signInWithPopup, signOut } from 'firebase/auth';
-
+import annyang from 'annyang';
 import './App.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -57,6 +57,17 @@ function App() {
     const savedTasks = localStorage.getItem('tasks');
     if (savedTasks) {
       setTasks(JSON.parse(savedTasks));
+    }
+
+    if (annyang) {
+      annyang.addCommands({
+        'add task *task': (task) => {
+          setNewTask(task);
+        },
+      });
+
+      // Start listening
+      annyang.start();
     }
   }, []);
 
@@ -246,6 +257,17 @@ function App() {
               Log in to start managing your tasks and enhance your daily productivity.
             </p>
           </div>
+          <footer className="footer">
+        <div className="footer-content">
+          <div className="footer-info">
+            <p>&copy; 2023 Tasky App. All rights reserved.</p>
+          </div>
+          <div className="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+        </div>
+      </footer>
         </div>
       )}
       {user && (
@@ -297,6 +319,7 @@ function App() {
           </li>
         ))}
       </ul>
+     
     </div>
   );
 }

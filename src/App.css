@@ -210,6 +210,7 @@ li {
 
 .dark-mode {
   background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%); 
+  color: white !important;
   
 }
 
@@ -239,17 +240,66 @@ li {
 }
 
 .about {
-  max-width: 600px; /* Set a maximum width for better readability on larger screens */
-  margin: 0 auto; /* Center the element horizontally */
-  text-align: center; /* Center the text within the element */
-  padding: 20px; /* Add some padding for better visual appearance */
-  border-radius: 10px; /* Add rounded corners for a better visual appearance */
-  box-shadow: 0 0 10px rgba(7, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+  max-width: 600px;
+  margin: 0 auto; 
+  text-align: center; 
+  padding: 20px; 
+  border-radius: 10px; 
+  box-shadow: 0 0 10px rgba(7, 0, 0, 0.1); 
 }
 
-/* For mobile responsiveness */
+
 @media (max-width: 600px) {
   .about {
-    width: 90%; /* Adjust the width for smaller screens */
+    width: 90%; 
   }
+}
+
+.footer {
+  background: linear-gradient(
+    45deg,
+    hsl(0deg 0% 100%) 0%,
+    hsl(344deg 0% 96%) 11%,
+    hsl(344deg 0% 92%) 22%,
+    hsl(0deg 0% 88%) 33%,
+    hsl(1deg 31% 86%) 44%,
+    hsl(1deg 53% 85%) 56%,
+    hsl(0deg 68% 83%) 67%,
+    hsl(20deg 91% 84%) 78%,
+    hsl(39deg 87% 85%) 89%,
+    hsl(73deg 83% 88%) 100%
+  );
+  color: black;
+  padding: 20px 0;
+  text-align: center;
+}
+
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links a {
+  color: black;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.dark-mode .footer {
+  background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+  color: white;
+}
+
+.dark-mode .footer-links a {
+  color: #fff;
+}
+
+.dark-mode .footer-links a:hover {
+  text-decoration: underline;
 }
