@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { signInWithPopup, signOut } from 'firebase/auth';
+import React, { useState, useEffect } from "react";
+import { signInWithPopup, signOut } from "firebase/auth";
 
-import './App.css';
+import "./App.css";
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
-import DarkMode from './DarkMode';
-import Login from './Login';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import DarkMode from "./DarkMode";
+import Login from "./Login";
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,7 +22,7 @@ const firebaseConfig = {
   projectId: "awesome-project-88960",
   storageBucket: "awesome-project-88960.appspot.com",
   messagingSenderId: "13284418628",
-  appId: "1:13284418628:web:0f29b3798ef3d80e2f8811"
+  appId: "1:13284418628:web:0f29b3798ef3d80e2f8811",
 };
 
 // Initialize Firebase
@@ -34,42 +34,41 @@ const provider = new GoogleAuthProvider(db);
 
 library.add(faMoon, faSun);
 
-
 function App() {
   const [user, setUser] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState('');
-  const [dueDate, setDueDate] = useState('');
+  const [newTask, setNewTask] = useState("");
+  const [dueDate, setDueDate] = useState("");
   const [selectedTask, setSelectedTask] = useState(null);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('user');
+    const savedUser = localStorage.getItem("user");
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     }
 
-    const savedDarkMode = localStorage.getItem('darkMode');
+    const savedDarkMode = localStorage.getItem("darkMode");
     if (savedDarkMode) {
-      setDarkMode(savedDarkMode === 'true');
+      setDarkMode(savedDarkMode === "true");
     }
 
-    const savedTasks = localStorage.getItem('tasks');
+    const savedTasks = localStorage.getItem("tasks");
     if (savedTasks) {
       setTasks(JSON.parse(savedTasks));
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
   useEffect(() => {
-    localStorage.setItem('darkMode', darkMode);
+    localStorage.setItem("darkMode", darkMode);
   }, [darkMode]);
 
   useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
   useEffect(() => {
@@ -85,7 +84,9 @@ function App() {
           task.notificationShown = true;
         } else if (task.dueDate && !task.completed && !task.notificationShown) {
           const timeDifference = task.dueDate - now;
-          const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+          const daysDifference = Math.ceil(
+            timeDifference / (1000 * 60 * 60 * 24)
+          );
 
           if (daysDifference === 1) {
             showNotification(`Task Due Tomorrow: ${task.text}`);
@@ -95,15 +96,15 @@ function App() {
       });
     }, 60000);
 
-    return () => clearInterval(updateTasksInterval); 
+    return () => clearInterval(updateTasksInterval);
   }, [tasks]);
 
   const showNotification = (message) => {
-    if (window.Notification && Notification.permission === 'granted') {
+    if (window.Notification && Notification.permission === "granted") {
       new Notification(message);
-    } else if (window.Notification && Notification.permission !== 'denied') {
+    } else if (window.Notification && Notification.permission !== "denied") {
       Notification.requestPermission().then((permission) => {
-        if (permission === 'granted') {
+        if (permission === "granted") {
           new Notification(message);
         }
       });
@@ -114,10 +115,11 @@ function App() {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      const profilePicture = 'https://imgs.search.brave.com/bFF8_xQy_-cBA55VIKAy68h8rgyZDOyvB5FXxL1xR5g/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAwLzY1LzEwLzQ3/LzM2MF9GXzY1MTA0/NzE4X3gxN2E3Nnd6/V0tJbTNCbGhBNnV5/WVZrRHM5OTgyYzZx/LmpwZw';
+      const profilePicture =
+        "https://imgs.search.brave.com/bFF8_xQy_-cBA55VIKAy68h8rgyZDOyvB5FXxL1xR5g/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAwLzY1LzEwLzQ3/LzM2MF9GXzY1MTA0/NzE4X3gxN2E3Nnd6/V0tJbTNCbGhBNnV5/WVZrRHM5OTgyYzZx/LmpwZw";
       setUser({ username: user.displayName, profilePic: profilePicture });
     } catch (error) {
-      console.error('Error signing in:', error.message);
+      console.error("Error signing in:", error.message);
     }
   };
 
@@ -126,52 +128,50 @@ function App() {
       await signOut(auth);
       setUser(null);
       // Clear user-specific data from local storage
-      localStorage.removeItem('tasks');
+      localStorage.removeItem("tasks");
       setSelectedTask(null);
     } catch (error) {
-      console.error('Error signing out:', error.message);
+      console.error("Error signing out:", error.message);
     }
   };
-  
 
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
   };
 
   const addTask = () => {
-  if (newTask.trim() !== '' && dueDate.trim() !== '') {
-    const newTasks = [
-      ...tasks,
-      {
-        id: Date.now(),
-        userId: user.uid, // Include the user ID
-        text: newTask,
-        completed: false,
-        dueDate: new Date(dueDate),
-      },
-    ];
-    setTasks(newTasks);
-    setNewTask('');
-    setDueDate('');
-  }
-};
-
+    if (newTask.trim() !== "" && dueDate.trim() !== "") {
+      const newTasks = [
+        ...tasks,
+        {
+          id: Date.now(),
+          userId: user.uid, // Include the user ID
+          text: newTask,
+          completed: false,
+          dueDate: new Date(dueDate),
+        },
+      ];
+      setTasks(newTasks);
+      setNewTask("");
+      setDueDate("");
+    }
+  };
 
   const editTask = () => {
-    if (selectedTask && (newTask.trim() !== '' || dueDate.trim() !== '')) {
+    if (selectedTask && (newTask.trim() !== "" || dueDate.trim() !== "")) {
       const updatedTasks = tasks.map((task) =>
         task.id === selectedTask.id
           ? {
               ...task,
-              text: newTask.trim() !== '' ? newTask : task.text,
-              dueDate: dueDate.trim() !== '' ? new Date(dueDate) : task.dueDate,
+              text: newTask.trim() !== "" ? newTask : task.text,
+              dueDate: dueDate.trim() !== "" ? new Date(dueDate) : task.dueDate,
               notificationShown: false,
             }
           : task
       );
       setTasks(updatedTasks);
-      setNewTask('');
-      setDueDate('');
+      setNewTask("");
+      setDueDate("");
       setSelectedTask(null);
 
       showNotification(`Task Updated: ${selectedTask.text}`);
@@ -190,7 +190,7 @@ function App() {
   const toggleTaskCompleted = (taskId) => {
     const updatedTasks = tasks.map((task) =>
       task.id === taskId
-        ? { ...task, completed: !task.completed, notificationShown: false } 
+        ? { ...task, completed: !task.completed, notificationShown: false }
         : task
     );
     setTasks(updatedTasks);
@@ -210,7 +210,7 @@ function App() {
   };
 
   return (
-    <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
+    <div className={`App ${darkMode ? "dark-mode" : ""}`}>
       <header>
         <h1>Tasky</h1>
         {user ? (
@@ -226,24 +226,31 @@ function App() {
               />
             )}
             <p>{user.username}</p>
-            <div className='logout-button'>
-              <button id="logOut" onClick={handleLogout} style={{ marginLeft: '35px' }}>Logout</button>
+            <div className="logout-button">
+              <button
+                id="logOut"
+                onClick={handleLogout}
+                style={{ marginLeft: "35px" }}
+              >
+                Logout
+              </button>
             </div>
           </div>
         ) : (
-          <div className='login-button'>
+          <div className="login-button">
             <Login handleLogin={handleLogin} />
           </div>
         )}
-         <DarkMode darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+        <DarkMode darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       </header>
       {!user && (
-        <div className='app-introduction-container'>
-          <div className='app-introduction'>
+        <div className="app-introduction-container">
+          <div className="app-introduction">
             <h2>Welcome to Tasky!</h2>
             <p>
-              Tasky is a simple and efficient task management app designed to help you stay organized and productive. 
-              Log in to start managing your tasks and enhance your daily productivity.
+              Tasky is a simple and efficient task management app designed to
+              help you stay organized and productive. Log in to start managing
+              your tasks and enhance your daily productivity.
             </p>
           </div>
         </div>
@@ -270,32 +277,38 @@ function App() {
         </div>
       )}
       <ul>
-       {user &&
-        tasks.map((task) => (
-          <li
-            key={task.id}
-            className={task.completed || checkDueDate(task.dueDate) ? 'completed' : ''}
-          >
-            <div>
-              <span className="task-indicator">Task Name:</span>
-              <span className="task-name">{task.text}</span>
-            </div>
-            {task.dueDate && (
+        {user &&
+          tasks.map((task) => (
+            <li
+              key={task.id}
+              className={
+                task.completed || checkDueDate(task.dueDate) ? "completed" : ""
+              }
+            >
               <div>
-                <span className={`due-date ${checkDueDate(task.dueDate) ? 'overdue' : ''}`}>
-                  Due Date: {task.dueDate.toLocaleDateString()}
-                </span>
+                <span className="task-indicator">Task Name:</span>
+                <span className="task-name">{task.text}</span>
               </div>
-            )}
-            <div>
-              <button onClick={() => toggleTaskCompleted(task.id)}>
-                {task.completed ? 'Undo' : 'Complete'}
-              </button>
-              <button onClick={() => setSelectedTask(task)}>Edit</button>
-              <button onClick={() => deleteTask(task.id)}>Delete</button>
-            </div>
-          </li>
-        ))}
+              {task.dueDate && (
+                <div>
+                  <span
+                    className={`due-date ${
+                      checkDueDate(task.dueDate) ? "overdue" : ""
+                    }`}
+                  >
+                    Due Date: {task.dueDate.toLocaleDateString()}
+                  </span>
+                </div>
+              )}
+              <div>
+                <button onClick={() => toggleTaskCompleted(task.id)}>
+                  {task.completed ? "Undo" : "Complete"}
+                </button>
+                <button onClick={() => setSelectedTask(task)}>Edit</button>
+                <button onClick={() => deleteTask(task.id)}>Delete</button>
+              </div>
+            </li>
+          ))}
       </ul>
     </div>
   );
