@@ -300,7 +300,7 @@ function App() {
             className={task.completed || checkDueDate(task.dueDate) ? 'completed' : ''}
           >
             <div>
-              <span className="task-indicator">Task Name::</span>
+              <span className="task-indicator">Task Name:</span>
               <span className="task-name">{task.text}</span>
             </div>
             {task.dueDate && (
