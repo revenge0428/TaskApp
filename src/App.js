@@ -224,7 +224,6 @@ function App() {
     <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
       <header>
         <h1>Tasky</h1>
-        <h1>{t('app.welcome')}</h1>
         {user ? (
           <div className="user-info">
             {user.profilePic && (
