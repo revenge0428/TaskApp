@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import annyang from 'annyang';
-import { useTranslation } from 'react-i18next';
 
 import './App.css';
 
@@ -43,7 +42,6 @@ function App() {
   const [newTask, setNewTask] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [selectedTask, setSelectedTask] = useState(null);
-  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
