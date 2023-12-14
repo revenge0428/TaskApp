@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import annyang from 'annyang';
+import { useTranslation } from 'react-i18next';
 
 import './App.css';
 
@@ -26,7 +27,6 @@ const firebaseConfig = {
   appId: "1:13284418628:web:0f29b3798ef3d80e2f8811"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -43,6 +43,7 @@ function App() {
   const [newTask, setNewTask] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [selectedTask, setSelectedTask] = useState(null);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
@@ -67,7 +68,6 @@ function App() {
         },
       });
 
-      // Start listening
       annyang.start();
     }
   }, []);
@@ -137,7 +137,6 @@ function App() {
     try {
       await signOut(auth);
       setUser(null);
-      // Clear user-specific data from local storage
       localStorage.removeItem('tasks');
       setSelectedTask(null);
     } catch (error) {
@@ -156,7 +155,7 @@ function App() {
       ...tasks,
       {
         id: Date.now(),
-        userId: user.uid, // Include the user ID
+        userId: user.uid,
         text: newTask,
         completed: false,
         dueDate: new Date(dueDate),
@@ -225,8 +224,8 @@ function App() {
     <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
       <header>
         <h1>Tasky</h1>
+        <h1>{t('app.welcome')}</h1>
         {user ? (
-          // Display user information when logged in
           <div className="user-info">
             {user.profilePic && (
               <img
